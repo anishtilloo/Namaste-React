@@ -1,4 +1,3 @@
-
 // created an h1 element using React.createElement
 /* It takes 3 arguments 
     - Tag Name as string
