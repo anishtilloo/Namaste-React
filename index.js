@@ -1,3 +1,9 @@
+import React from "react"; 
+import ReactDOM from "react-dom/client";
+
+// The react in "react" is basically referring to the react backage in the node_modules
+
+
 // created an h1 element using React.createElement
 /* It takes 3 arguments 
     - Tag Name as string
