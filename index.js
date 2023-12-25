@@ -28,6 +28,50 @@ const HeadingComponent = () => (
     </div>
 );
 
+// Assignment
+//  Create a Nested header Element using React.createElement(h1,h2,h3 inside a div with class “title”)
+// const h1 = React.createElement('h1', {}, "Hello From H1");
+// const h2 = React.createElement('h2', {}, "Hello From H2");
+// const h3 = React.createElement('h3', {}, "Hello From H3");
+// const div = React.createElement('div', {className: "title"}, [h1, h2, h3]);
+
+// Create the same element as above using JSX
+// const div = (
+//     <div className="title">
+//         <h1>Hello From H1</h1>
+//         <h2>Hello From H2</h2>
+//         <h3>Hello From H3</h3>
+//     </div>
+// );
+
+// Create a functional component of the same with JSX (same as above)
+// const Div = () => (
+//     <div className="title">
+//         <h1>Hello From H1</h1>
+//         <h2>Hello From H2</h2>
+//         <h3>Hello From H3</h3>
+//     </div>
+// )
+
+// Create a Header Component from scratch using Functional Components with JSX
+// ○ Add a Logo on left
+// ○ Add a search bar in middle
+// ○ Add User icon on right
+// ○ Add CSS to make it look nice
+
+const Header = () => (
+    <div className="container">
+        <h3 className="logo">LOGO</h3>
+        <div className="search-bar">
+            <input type="text" />
+        </div>
+        <div className="user">
+            UserIcon
+        </div>
+    </div>
+);
+
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(<HeadingComponent />);
+root.render(<Header />);
