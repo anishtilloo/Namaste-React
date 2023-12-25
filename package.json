@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "This is Namaste React by Anish Tilloo",
   "scripts": {
-    "start": "rm -rf .parcel-cache && npx parcel index.html",
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
     "test": "jest"
   },
   "repository": {
