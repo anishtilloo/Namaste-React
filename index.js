@@ -1,27 +1,33 @@
 import React from "react"; 
 import ReactDOM from "react-dom/client";
 
-// The react in "react" is basically referring to the react backage in the node_modules
+//  React Element is basically an object when we render it on to the DOM it becomes HTML Element
+// const heading = React.createElement("h1", {id: "heading"}, "Namaster Javascript");
+// console.log(heading);
 
+// JSX - It is an HTML-like or XML-like syntax 
+// JSX is transpiled before it reaches JS Engine => Parcel does it for us 
+// but parcel does not do it by itself => babel comes with parcel which does the actual transpilation
 
-// created an h1 element using React.createElement
-/* It takes 3 arguments 
-    - Tag Name as string
-        -- for example: 
-            'h1', 'div'
-    - Object of attributes
-        -- we can pass an empty object
-        -- or {id: "child"}, we are passing id as a child and many other attributes
-    - Content of the tag
-        -- we can either send a string or nest another element
-        -- 'hello world from react' or 
-            --- const h2 = React.createElement('h1', {}, 'hello world from react');
-                const h1 = React.createElement('h1', {}, h2);
+// JSX is converted into => React.createElement which is converted into => JS-Object which is rendered as => HTML Element
+// const jsxHeading = <h1 id="heading">Namaste React from JSX</h1>
+// console.log(jsxHeading);
 
-*/
-const h1 = React.createElement('h1', {}, 'hello world from react');
-       
+const TitleComponent = () => (
+    <h1 className="head" tabIndex="5">Namaste React using JSX</h1>
+);
 
-const root = document.getElementById('root');
-const reactRoot = ReactDOM.createRoot(root);
-reactRoot.render(h1);
+// This is Component Composition that is using a component inside another component;
+const HeadingComponent = () => (
+    <div id="container">
+        <TitleComponent></TitleComponent>
+        {/* Inside these curly braces we can run any piece of JS expression */}
+        {/* {JSX can sanatize the XSS (Cross site scription ) attack it dosen't blindly runs the code inside the curly brackets it sanatizes it} */}
+        {}
+        <h1 id="heading">Namaste React Functional Component.</h1>
+    </div>
+);
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+root.render(<HeadingComponent />);
