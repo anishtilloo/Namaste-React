@@ -20,3 +20,21 @@
 - Also gives uss a way to host app on HTTPs
 - Tree Shaking (algo) - remove unused code
 - Diffrent dev and prod builds
+
+# Two types of Export/Import 
+- Default Export/Import 
+    * Export: export default ComponentName/VariableName
+    * Import: import ComponentName/VariableName from "path"
+    * Used for exporting and importing only one thing from the file
+- Named Export/Import
+    * Export: export ComponentName/VariableName
+    * Import: import {ComponentName/VariableName} from "path"
+    * Used for exporting and importing multiple thing from the file
+
+
+# React Hooks 
+    - They are normal JS utility Functions - (written by react developers)
+    - They have written this inside react library
+- They are two very important hooks
+    - useState() - used to generate superpowerful variables in react
+    - useEffect()
