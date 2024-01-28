@@ -1,7 +1,7 @@
 import RestaurnatCard from "./RestaurantCard";
 import SearchSVG from "./SearchSVG";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Body = ({resListData}) => {
     // local state variable
@@ -11,7 +11,7 @@ const Body = ({resListData}) => {
     // They are generally accessed by array destructuring as useState hook returns an array
     // It takes a default value for the state variable
     const [listOfRestaurants, setListOfRestaurants] = useState([...resListData]);
-
+    const [filteredListofRestaurants, setFilteredListofRestaurants] = useState([]);
     const [search, setSearch] = useState("");
 
     const handleInputSearchValue = (event) => {
@@ -19,20 +19,35 @@ const Body = ({resListData}) => {
         let searchedListOfRestaurants = listOfRestaurants.filter(
             (res) => res.info.name.toLowerCase().indexOf(search.toLowerCase()) !== -1
         )
-        setListOfRestaurants(searchedListOfRestaurants);
+        setFilteredListofRestaurants(searchedListOfRestaurants);
     }
 
     const hendleClickOnFilter = () => {
         let filteredListOfRestaurants = listOfRestaurants.filter(
             (res) => res.info.avgRating > 4)
-        setListOfRestaurants(filteredListOfRestaurants)
+        setFilteredListofRestaurants(filteredListOfRestaurants)
+    }
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+    const fetchData = async (params) => {
+        const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.1458004&lng=79.0881546&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+        const jsonData = await data.json();
+        // syntax with ? is called as optional chaining where it check the variable in front of the ? is null or not if it is null then it makes it undefined instead of throwing an error
+        // It is an industry standard to use optional chaining
+        setListOfRestaurants([...jsonData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants]);
+        setFilteredListofRestaurants([...jsonData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants])
     }
 
     return (
         <div className="body">
             <div className="container">
                 <div className="search-container">
-                    <input className="search" type="text" value={search} />
+                    <input className="search" type="text" value={search} onChange={(event) => {
+                        setSearch(event.target.value);
+                    }} />
                     <span className="search-svg">
                         <SearchSVG  />  
                     </span>
@@ -45,7 +60,7 @@ const Body = ({resListData}) => {
             
             <div className="reataurant-container">
                 {/* Reataurant Card Component */}
-                {listOfRestaurants.map(res =>
+                {!filteredListofRestaurants ? <h1>Nothing to display.</h1> : filteredListofRestaurants.map(res =>
                     <RestaurnatCard resData={res} key={res.info.id} />
                 )}
             </div>
