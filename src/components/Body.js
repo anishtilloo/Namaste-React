@@ -33,7 +33,7 @@ const Body = ({resListData}) => {
     }, []);
 
     const fetchData = async (params) => {
-        const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.1458004&lng=79.0881546&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+        const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.11610&lng=79.07060&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
         const jsonData = await data.json();
         // syntax with ? is called as optional chaining where it check the variable in front of the ? is null or not if it is null then it makes it undefined instead of throwing an error
         // It is an industry standard to use optional chaining
